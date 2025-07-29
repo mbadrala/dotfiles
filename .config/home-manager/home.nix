@@ -1,0 +1,61 @@
+{ config, pkgs, ... }:
+
+{
+  home.username = "badral";
+  home.homeDirectory = "/home/badral";
+  home.stateVersion = "25.05"; # Please read the comment before changing.
+
+  home.packages = [
+    pkgs.neovim
+    pkgs.tmux
+    pkgs.htop
+    pkgs.lazygit
+    pkgs.fzf
+    pkgs.ripgrep
+    pkgs.rustup
+    pkgs.python314
+    pkgs.uv
+    pkgs.go
+    pkgs.nodejs_22
+    pkgs.pnpm
+    pkgs.fd
+    pkgs.jdk21
+    pkgs.maven
+    pkgs.lombok
+    pkgs.geoserver
+    pkgs.wl-clipboard
+  ];
+
+  home.file = {
+    ".config/nvim".source = builtins.toString ../nvim;
+    ".config/kitty".source = builtins.toString ../kitty;
+    ".tmux.conf".source = ../../.tmux.conf;
+  };
+
+  services.ssh-agent.enable = true;
+  programs.bash = {
+    enable = true;
+    shellAliases = {
+      vi = "nvim";
+      vim = "nvim";
+      grep = "grep --color=auto";
+    };
+    bashrcExtra = ''
+    '';
+  };
+  programs.fd = {
+    enable = true;
+  };
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    OPENAI_KEY = "";
+  };
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+}
