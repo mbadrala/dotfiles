@@ -52,6 +52,7 @@ require('mason-lspconfig').setup({
         "ruff",
         "pyright",
         "omnisharp",
+        "prettier",
     },
     handlers = {
         lsp_zero.default_setup,
@@ -182,8 +183,7 @@ require("conform").setup({
             prepend_args = {
                 "--print-width", "80",
                 "--tab-width", "2",
-                "--single-quote",
-                "--trailing-comma", "all",
+                "--trailing-comma", "none",
                 "--bracket-spacing",
             },
         },
@@ -193,3 +193,4 @@ require("conform").setup({
 vim.keymap.set("n", "<leader>f", function()
     require("conform").format({ async = true })
 end, { desc = "Format file with Conform" })
+
