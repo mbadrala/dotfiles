@@ -52,6 +52,7 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },
         }
     }
+    use "stevearc/conform.nvim"
 
     -- Debugger
     use 'mfussenegger/nvim-dap'
