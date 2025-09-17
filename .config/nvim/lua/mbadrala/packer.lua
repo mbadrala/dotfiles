@@ -35,7 +35,7 @@ return require('packer').startup(function(use)
 
     -- Utility plugins
     use 'mbbill/undotree'
-    use 'norcalli/nvim-colorizer.lua'
+    use 'eero-lehtinen/oklch-color-picker.nvim'
     use 'HakonHarnes/img-clip.nvim'
 
     -- LSP and autocompletion

@@ -13,3 +13,5 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set('v', '<leader>1f', vim.lsp.buf.format, bufopts)
 
 vim.keymap.set('n', '<leader>gg', '<cmd>LazyGit<CR>', { silent = true })
+
+vim.keymap.set('n', '<leader>v', function() require('oklch-color-picker').pick_under_cursor() end)

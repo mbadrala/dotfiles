@@ -1,2 +1,2 @@
--- vim.o.termguicolors = true
--- require'colorizer'.setup()
+vim.opt.termguicolors = true
+require('oklch-color-picker').setup({})
