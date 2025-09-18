@@ -52,7 +52,6 @@ require('mason-lspconfig').setup({
         "ruff",
         "pyright",
         "omnisharp",
-        "prettier",
     },
     handlers = {
         lsp_zero.default_setup,
@@ -105,9 +104,16 @@ require('mason-lspconfig').setup({
             lspconfig.lua_ls.setup({
                 settings = {
                     Lua = {
+                        runtime = {
+                            version = 'LuaJIT',
+                            path = vim.split(package.path, ';'),
+                        },
                         diagnostics = {
-                            globals = { 'vim' }, -- Recognize 'vim' as a global variable
-                        }
+                            globals = { 'vim' },
+                        },
+                        workspace = {
+                            library = vim.api.nvim_get_runtime_file("", true),
+                        },
                     }
                 }
             })
@@ -167,30 +173,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
     desc = 'LSP: Disable hover capability from Ruff',
 })
-
-
--- Conform
-
-require("conform").setup({
-    formatters_by_ft = {
-        javascript = { "prettier" },
-        typescript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescriptreact = { "prettier" },
-    },
-    formatters = {
-        prettier = {
-            prepend_args = {
-                "--print-width", "80",
-                "--tab-width", "2",
-                "--trailing-comma", "none",
-                "--bracket-spacing",
-            },
-        },
-    },
-})
-
-vim.keymap.set("n", "<leader>f", function()
-    require("conform").format({ async = true })
-end, { desc = "Format file with Conform" })
 
