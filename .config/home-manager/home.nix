@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "badral";
-  home.homeDirectory = "/home/badral";
-  home.stateVersion = "25.05"; # Please read the comment before changing.
+  home.username = "mbadrala";
+  home.homeDirectory = "/home/mbadrala";
+  home.stateVersion = "25.05";
 
   home.packages = [
     pkgs.neovim
@@ -24,12 +24,11 @@
     pkgs.lombok
     pkgs.geoserver
     pkgs.wl-clipboard
+    pkgs.php
+    pkgs.php84Packages.composer
   ];
 
   home.file = {
-    ".config/nvim".source = builtins.toString ../nvim;
-    ".config/kitty".source = builtins.toString ../kitty;
-    ".tmux.conf".source = ../../.tmux.conf;
   };
 
   services.ssh-agent.enable = true;
@@ -54,8 +53,8 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     OPENAI_KEY = "";
+    PATH = "$HOME/.config/composer/vendor/bin:$PATH";
   };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
